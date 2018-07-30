@@ -78,5 +78,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:leitmily/leitmily.github.io.git
+  repo: git@gitee.com:letmily/letmily.git
+  #repo: git@github.com:leitmily/leitmily.git
   branch: master
