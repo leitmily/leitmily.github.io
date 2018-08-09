@@ -1968,7 +1968,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #be2eff;
+  background: #6c377e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2709,12 +2709,6 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
-.header {
-  background: url("https://github.com/Hunter1023/blogSource/raw/master/source/image/fore/20180503.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 .post {
   margin-top: 60px;
   margin-bottom: 60px;
@@ -2732,7 +2726,6 @@ body {
   background: url("/images/background/background1.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 50%;
 }
 .main-inner {
   margin-top: 60px;
