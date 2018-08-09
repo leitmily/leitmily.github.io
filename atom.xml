@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Deemo的博客</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://letmily.gitee.io/"/>
+  <updated>2018-07-30T15:17:39.854Z</updated>
+  <id>https://letmily.gitee.io/</id>
+  
+  <author>
+    <name>leitmily</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://letmily.gitee.io/2018/07/30/hello-world/"/>
+    <id>https://letmily.gitee.io/2018/07/30/hello-world/</id>
+    <published>2018-07-30T15:17:39.854Z</published>
+    <updated>2018-07-30T15:17:39.854Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+      <category term="tags" scheme="https://letmily.gitee.io/tags/tags/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux下C/C++编程导入第三方库文件的几种方法</title>
+    <link href="https://letmily.gitee.io/2017/07/30/first-blog/"/>
+    <id>https://letmily.gitee.io/2017/07/30/first-blog/</id>
+    <published>2017-07-30T08:00:24.000Z</published>
+    <updated>2018-07-30T15:17:39.854Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考资料：</p><ul><li><a href="https://blog.csdn.net/zxh2075/article/details/54629318" title="linux下添加动态链接库路径的方法" target="_blank" rel="noopener">linux下添加动态链接库路径的方法</a></li><li><a href="https://blog.csdn.net/yanshaodan/article/details/71576853" title="linux添加头文件路径" target="_blank" rel="noopener">linux添加头文件路径</a></li><li><a href="https://blog.csdn.net/newchenxf/article/details/51750239" title="pkg-config 详解" target="_blank" rel="noopener">pkg-config 详解</a></li></ul><h2 id="1-添加编译选项"><a href="#1-添加编译选项" class="headerlink" title="1. 添加编译选项"></a>1. 添加编译选项</h2><p>在编译的时候添加库路径以及头文件路径选项，如</p><ul><li>-I 头文件所在的路径</li><li>-L 库文件所在的路径（包括静态库和动态库）</li><li>-l 指定库文件</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -c main.c -I./inc -L./lib</span><br></pre></td></tr></table></figure><h2 id="2-修改系统环境变量"><a href="#2-修改系统环境变量" class="headerlink" title="2. 修改系统环境变量"></a>2. 修改系统环境变量</h2><p>将头文件路径和库文件路径添加到指定的系统环境变量中去，具体如下：</p><ul><li>使用 <strong>gcc</strong> 编译时将 <code>头文件</code> 路径添加到 <strong>C_INCLUDE_PATH</strong> 系统环境变量中；  </li><li>使用 <strong>g++</strong> 编译时将 <code>头文件</code> 路径添加到 <strong>CPLUS_INCLUDE_PATH</strong> 系统环境变量中；  </li><li>将 <code>动态连接库</code> 路径添加到 <strong>LD_LIBRARY_PATH</strong> 系统环境变量中；</li><li>将 <code>静态库</code> 路径添加到 <strong>LIBRARY_PATH</strong> 系统变量中。</li></ul><p>改变系统变量主要有两种形式，一种是临时改变，另一种是永久改变。</p><p>临时改变系统变量只需要使用 <strong>export</strong> 命令，重启终端后将恢复至先前状态，如</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export C_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/myinclude</span><br></pre></td></tr></table></figure><p>而永久改变又可分为仅改变当前用户和改变所有用户：</p><ul><li>仅改变当前用户的系统环境时，只需将上述的 <strong>export</strong> 语句添加到 <code>~/.bashrc</code> 或者 <code>~/.bash_profile</code> 文件内容后面，重启终端即可。</li><li>要改变所有用户的环境变量时，需将上述的的 <strong>export</strong> 语句添加到 <code>/etc/profile</code> 文件内容，并需要重启计算机。</li></ul><h2 id="3-使用-pkg-config-命令"><a href="#3-使用-pkg-config-命令" class="headerlink" title="3. 使用 pkg-config 命令"></a>3. 使用 pkg-config 命令</h2><p>部分第三方库在安装完成后会自动生成一个 *.pc 的配置文件用来存放第三方库安装的路径，包括头文件路径以及库文件路径，可以使用 <strong>pkg-config</strong> 命令查看，如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pkg-config --cflags --libs protobuf</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; -pthread -I/usr/local/include -L/usr/local/lib -lprotobuf -pthread</span><br></pre></td></tr></table></figure><p>其中：</p><ul><li>–cflags 返回头文件目录</li><li>–libs 返回库所在的目录以及库参数</li><li>protobuf 为第三方库名</li></ul><p>在编译包含这些库的代码时，需要执行上述命令获取返回结果，比如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -c main.c `pkg-config --cflags --libs protobuf`</span><br></pre></td></tr></table></figure><p>其中，`符号为数字1键左边的那键。</p><p>对于某些三方库没有<em>.pc文件，我们也可以自己写一个配置文件。\</em>.pc文件的路径存放在 <strong>PKG_CONFIG_PATH</strong> 系统变量下，使用 <strong>echo</strong> 命令可查看其变量。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo $PKG_CONFIG_PATH</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; :/usr/local/lib/pkgconfig</span><br></pre></td></tr></table></figure><p>进入该路径，我们可以看到 *.pc 的配置文件，用文本编辑器打开其中一个如protobuf.pc，其内容如下：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">prefix=/usr/local</span><br><span class="line">exec_prefix=$&#123;prefix&#125;</span><br><span class="line">libdir=$&#123;exec_prefix&#125;/lib</span><br><span class="line">includedir=$&#123;prefix&#125;/include</span><br><span class="line"></span><br><span class="line">Name: Protocol Buffers</span><br><span class="line">Description: Google's Data Interchange Format</span><br><span class="line">Version: 3.5.2</span><br><span class="line">Libs: -L$&#123;libdir&#125; -lprotobuf -pthread</span><br><span class="line">Libs.private: -lz</span><br><span class="line">Cflags: -I$&#123;includedir&#125; -pthread</span><br><span class="line">Conflicts: protobuf-lite</span><br></pre></td></tr></table></figure><p>其中：</p><ul><li>libdir 为库所在目录</li><li>includedir 为头文件所在目录</li><li>Libs 为调用参数，其内容为库所在的目录以及库参数</li><li>cflags 为调用参数，其内容为头文件目录</li></ul><p>因此，我们可以照着上面的形式自己写一个*.pc文件放到 <strong>PKG_CONFIG_PATH</strong> 所指定的目录下。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;参考资料：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/zxh2075/article/details/54629318&quot; title=&quot;linux下添加动态链接库路径的方法&quot; target=&quot;_blank&quot; rel=&quot;noope
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
