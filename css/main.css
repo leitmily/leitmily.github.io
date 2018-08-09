@@ -1968,7 +1968,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4b1329;
+  background: #be2eff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2709,18 +2709,11 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
-body {
-  background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533801444105&di=72a94c5575ca0b85d393a6f925bc8333&imgtype=0&src=http%3A%2F%2Fpic.xiudodo.com%2Ffigure%2F00%2F00%2F33%2F16%2F73%2F1655bda6abbcd26.jpg");
+.header {
+  background: url("https://github.com/Hunter1023/blogSource/raw/master/source/image/fore/20180503.jpg");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-}
-.main-inner {
-  margin-top: 60px;
-  padding: 60px 60px 60px 60px;
-  background: #fff;
-  opacity: 0.8;
-  min-height: 500px;
 }
 .post {
   margin-top: 60px;
@@ -2734,4 +2727,17 @@ body {
 }
 :active {
   cursor: url("/images/shubiao/Handwriting.cur"), auto !important;
+}
+body {
+  background: url("/images/background/background1.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.main-inner {
+  margin-top: 60px;
+  padding: 60px 60px 60px 60px;
+  background: #fff;
+  opacity: 0.8;
+  min-height: 500px;
 }
