@@ -1968,7 +1968,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #867382;
+  background: #ff77e8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2710,7 +2710,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/background/background1.jpeg");
+  background: url("./images/background/background1.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
