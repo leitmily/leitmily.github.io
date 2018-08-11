@@ -577,7 +577,7 @@ code {
 code {
   padding: 2px 4px;
   word-wrap: break-word;
-  color: #555;
+  color: #d05;
   background: #eee;
   border-radius: 3px;
   font-size: 14px;
@@ -2026,7 +2026,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fef;
+  background: #d2b5ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2812,4 +2812,54 @@ body {
   background: #fff;
   opacity: 0.8;
   min-height: 500px;
+}
+.post {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  padding: 14px;
+  -webkit-box-shadow: 0 0 14px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 14px rgba(202,203,204,0.5);
+}
+.site-title {
+  font-size: 30px;
+}
+.brand {
+  background: transparent;
+}
+.menu {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-left: 0;
+  text-align: center;
+  border-radius: initial;
+}
+a {
+  color: rgba(0,0,0,0.8);
+}
+a:hover {
+  color: #ff106c;
+  border-bottom-color: #ff106c;
+}
+.menu .menu-item a {
+  font-size: 14px;
+  color: #708090;
+  padding: 0px 0px;
+  border: none;
+  display: block;
+  line-height: inherit;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.menu .menu-item a:hover {
+  background: rgba(255,255,255,0.6);
+}
+.sidebar-toggle {
+  background: #649ab6;
+}
+.back-to-top {
+  background: #649ab6;
 }
