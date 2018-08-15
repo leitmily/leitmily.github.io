@@ -2026,7 +2026,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cdffe5;
+  background: #d520e8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2821,13 +2821,6 @@ body {
   text-align: center;
   border-radius: initial;
 }
-a {
-  color: rgba(0,0,0,0.8);
-}
-a:hover {
-  color: #ff106c;
-  border-bottom-color: #ff106c;
-}
 .menu .menu-item a {
   font-size: 14px;
   color: #708090;
@@ -2878,11 +2871,9 @@ code {
 }
 .post-button .btn {
   color: #555 !important;
-  background-color: #fff;
-  opacity: 0.8;
+  background-color: rgba(255,255,255,0.1);
   border-radius: 3px;
   font-size: 15px;
-  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
   border: none !important;
   transition-property: unset;
   padding: 0px 15px;
@@ -2890,6 +2881,37 @@ code {
 .post-button .btn:hover {
   border-radius: 3px;
   font-size: 15px;
-  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.8);
-  opacity: 0.8;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
+}
+.footer {
+  color: #555;
+}
+.posts-expand .post-tags a {
+  border-bottom: none;
+  margin-right: 0px;
+  font-size: 13px;
+  padding: 0px 5px;
+  border-radius: 3px;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.posts-expand .post-tags a:hover {
+  background: #eee;
+}
+.post-nav-item a {
+  color: #5073b8;
+  font-weight: bold;
+}
+.post-nav-item a:hover {
+  color: #a166ab;
+  font-weight: bold;
+}
+a {
+  color: #5073b8;
+  border-bottom-color: #5073b8;
+}
+a:hover {
+  color: #a166ab;
+  border-bottom-color: #a166ab;
 }
