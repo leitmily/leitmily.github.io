@@ -57,6 +57,10 @@
 
 
 
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -94,8 +98,8 @@
     scheme: 'Muse',
     version: '6.3.0',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: false,
-    fastclick: false,
+    fancybox: true,
+    fastclick: true,
     lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -115,14 +119,17 @@
 
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="abouttest 这是一个简单的测试">
+<meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="https://letmily.gitee.io/about/index.html">
 <meta property="og:site_name" content="Deemo的博客">
+<meta property="og:description" content="abouttest 这是一个简单的测试">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-30T15:17:39.854Z">
+<meta property="og:updated_time" content="2018-08-18T05:19:17.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
+<meta name="twitter:description" content="abouttest 这是一个简单的测试">
 
 
 
@@ -342,20 +349,9 @@
       <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                
-                
-                  
-                    
-                  
-                
-                目前共计 1 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/tags/" style="font-size: 12px; color: #ccc">tags</a>
-            </div>
-          </div>
+          <h1 id="about"><a href="#about" class="headerlink" title="about"></a>about</h1><p>test</p>
+<p>这是一个简单的测试</p>
+
         
       </div>
       
@@ -400,8 +396,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -410,7 +415,7 @@
                 alt="leitmily" />
             
               <p class="site-author-name" itemprop="name">leitmily</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">go go fighting!</p>
           </div>
 
           
@@ -420,7 +425,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -432,12 +437,22 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/about/index.html">
+                  <a href="/tags/index.html">
                     
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -489,6 +504,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#about"><span class="nav-number">1.</span> <span class="nav-text">about</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -581,12 +612,16 @@
 
 
 
+  
 
 
 
 
 
 
+
+
+  
 
 
 
@@ -612,12 +647,22 @@
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
   

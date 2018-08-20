@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar32.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar16.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    fastclick: true,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="说明&amp;emsp;&amp;emsp;kmp 算法是由 Knuth、Morris 和 Pratt 三人设计的一个非常高效的字符串匹配算法。该算法用于判断一个字符串是否包含于另一个字符串中。该算法复杂度是 $O(m + n)$，其中 $m$ 和 $n$ 分别是两个字符串的长度。 kmp 算法思想&amp;emsp;&amp;emsp;我们能很容易想到 $O(M * N)$ 复杂度的算法，即索引从字符串 str1 的第一个字符">
+<meta name="keywords" content="algorithm,kmp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP 算法详解（CPP 实现）">
+<meta property="og:url" content="https://letmily.gitee.io/2018/08/04/kmp/index.html">
+<meta property="og:site_name" content="Deemo的博客">
+<meta property="og:description" content="说明&amp;emsp;&amp;emsp;kmp 算法是由 Knuth、Morris 和 Pratt 三人设计的一个非常高效的字符串匹配算法。该算法用于判断一个字符串是否包含于另一个字符串中。该算法复杂度是 $O(m + n)$，其中 $m$ 和 $n$ 分别是两个字符串的长度。 kmp 算法思想&amp;emsp;&amp;emsp;我们能很容易想到 $O(M * N)$ 复杂度的算法，即索引从字符串 str1 的第一个字符">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://letmily.gitee.io/images/articles/KMP/1.png">
+<meta property="og:image" content="https://letmily.gitee.io/images/articles/KMP/2.png">
+<meta property="og:image" content="https://letmily.gitee.io/images/articles/KMP/3.png">
+<meta property="og:image" content="https://letmily.gitee.io/images/articles/KMP/4.png">
+<meta property="og:updated_time" content="2018-08-20T16:33:16.996Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KMP 算法详解（CPP 实现）">
+<meta name="twitter:description" content="说明&amp;emsp;&amp;emsp;kmp 算法是由 Knuth、Morris 和 Pratt 三人设计的一个非常高效的字符串匹配算法。该算法用于判断一个字符串是否包含于另一个字符串中。该算法复杂度是 $O(m + n)$，其中 $m$ 和 $n$ 分别是两个字符串的长度。 kmp 算法思想&amp;emsp;&amp;emsp;我们能很容易想到 $O(M * N)$ 复杂度的算法，即索引从字符串 str1 的第一个字符">
+<meta name="twitter:image" content="https://letmily.gitee.io/images/articles/KMP/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Deemo的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://letmily.gitee.io/2018/08/04/kmp/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>KMP 算法详解（CPP 实现） | Deemo的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deemo的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://letmily.gitee.io/2018/08/04/kmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="leitmily">
+      <meta itemprop="description" content="go go fighting!">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deemo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">KMP 算法详解（CPP 实现）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-04 00:28:09" itemprop="dateCreated datePublished" datetime="2018-08-04T00:28:09+08:00">2018-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-21 00:33:16" itemprop="dateModified" datetime="2018-08-21T00:33:16+08:00">2018-08-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>&emsp;&emsp;kmp 算法是由 Knuth、Morris 和 Pratt 三人设计的一个非常高效的字符串匹配算法。该算法用于判断一个字符串是否包含于另一个字符串中。该算法复杂度是 $O(m + n)$，其中 $m$ 和 $n$ 分别是两个字符串的长度。</p>
+<h2 id="kmp-算法思想"><a href="#kmp-算法思想" class="headerlink" title="kmp 算法思想"></a>kmp 算法思想</h2><p>&emsp;&emsp;我们能很容易想到 $O(M * N)$ 复杂度的算法，即索引从字符串 str1 的第一个字符开始，依次检查以该字符作为首字符的连续 N 个字符是否与字符串 str2 匹配，若不匹配，则索引向前移动一位，从第二个字符开始依次检查，以此类推。</p>
+<p>&emsp;&emsp;该算法并没有考虑到现已匹配的部分字符串的结构。已匹配的部分字符串中可能包含相同的部分，若利用这些相同的部分，我们可以一次性移动多位而不只是移动一位，这样大大提高了算法的效率。</p>
+<p>&emsp;&emsp;假设现有两个字符串 str1 和 str2，并且现已从 index1 处开始检是否匹配。当我们检测到 index2 处时，发现此时待检测的两个字符不相同（即图中 A 和 B 部分字符不匹配，index2 和 index1 之间的字符均匹配），按照传统思想我们将会从 index1 + 1 处的位置开始新一轮的检测，这样检测的效率极低。当我们仔细观察现已匹配的部分字符串时，若能找到字符串中首尾相同的部分（即图中 1、2、3和4部分的字符串相同），则可以直接将 str2 向前移动 k 个位置（如图所示），即图中 2 和 4 部分将作为新匹配字符串的头部，并接着从 str1 的 index2 位置开始检测。若不含有相同的部分，此时不管是将 str2 向前移动多少位都不会出现匹配的字符串，因此，可以从 str1 的 index2 位置开始新的一轮检测（即从 str2 的第一个字符开始匹配，可以理解为将 str2 向前移动了 str2 长度的位置）。</p>
+<div align="center"><img src="/images/articles/KMP/1.png" height="200"></div>
+
+<p>&emsp;&emsp;现有如下两个字符串：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str1 = <span class="string">"bacbbacabadababacambabacadbacabacasdsd"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str2 = <span class="string">"bacabaca"</span>;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;按照上述的匹配过程可以得到如下的匹配过程图，当匹配到 index2 处时，发现字符 d 和 字符 c 不匹配，但已匹配的部分 <code>bacaba</code> 的首位相同的部分为 <code>ba</code>，该部分为字符串 <code>bacaba</code> 的最长的相同前缀和后缀，而在下一轮的匹配过程中，将 <code>ba</code> 部分作为新的首部，并接着 index2 处开始匹配。一次类推完成整个字符串的匹配过程。</p>
+<div align="center"><img src="/images/articles/KMP/2.png" height="200"></div>
+
+<p>&emsp;&emsp;由以上匹配过程可知，每当开始新一轮的匹配时，我们需要知道当前已匹配的字符串中最长相同前缀和后缀的长度，以实现匹配过程中的快速跳转。而当前已匹配的字符串长度可能为 1 ～ length(str2)，因此，我们可以创建一个长度为 n 的数组 ( n = length(str2) )，用来保存不同长度字符串的最长相同前缀和后缀的长度。该数组为 next 数组。</p>
+<h2 id="next-数组计算"><a href="#next-数组计算" class="headerlink" title="next 数组计算"></a>next 数组计算</h2><p>&emsp;&emsp;next 数组中第 i 个数表示字符串索引从 0 到 i 的字符串最长相同前缀和后缀的长度。<code>注意，前缀和后缀不包括字符串本身，比如 aaaa 相同的最长前缀和最长后缀是 aaa</code> 。<br>&emsp;&emsp;假设我们现在已经求得 next[0]、next[1]、…… next[ i-1 ]，分别表示长度为 1 到 i 的字符串的最长相同前缀和后缀的长度。现在要求 next[ i ]。由下图我们可以看到，如果位置 i 和位置 next[ i-1 ] 处的两个字符相同（下标从零开始），则 next[ i ]等于 next[ i-1 ] + 1。</p>
+<div align="center"><img src="/images/articles/KMP/3.png" width="700"></div>
+
+<p>&emsp;&emsp;如果两个位置的字符不相同，我们可以将长度为 next[ i-1 ] 的字符串继续分割，获得其最大公共长度 next[ next[ i-1 ] -1 ]，然后再和位置 i 的字符比较。由于长度为 next[ i-1 ] 的字符串的公共长度保存在索引为 next[ i-1 ] -1 的 next 数组中，而该字符串又包含相同的前缀和后缀，如下图所示，如果位置 next[ next[ i-1 ] -1 ]和位置 i 的字符相同，则 next [i ]就等于 next[ next[ i -1 ] -1 ] + 1。如果不相等，就可以继续分割长度为 next[ next[ i -1 ] -1 ] 的字符串，直到字符串长度为 0 为止。</p>
+<div align="center"><img src="/images/articles/KMP/4.png" width="700"></div>
+
+<p>&emsp;&emsp;根据上述计算 next 数组的过程，可以写出相应的求 next 数组的代码（CPP实现）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getNext(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);               <span class="comment">// 字符串长度</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next(len, <span class="number">0</span>);            <span class="comment">// 保存结果，next[0]=0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> k = next[i - <span class="number">1</span>];             <span class="comment">// k 表示需要比较的位置，初始值为 next[i - 1]</span></span><br><span class="line">        <span class="keyword">while</span>(k &gt; <span class="number">0</span> &amp;&amp; str[i] != str[k]) <span class="comment">// 比较，若不相等则继续分割，直到相等或为0(即不含相同部分)</span></span><br><span class="line">            k = next[k - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(str[i] == str[k])             <span class="comment">// 若相等，则 next[i] = k + 1，否则为0，其中 k 为索引</span></span><br><span class="line">            k++;</span><br><span class="line">        next[i] = k;                     <span class="comment">// 更新 next[i]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在求解 next 数组后，可以利用该数组进行字符串匹配。</p>
+<h2 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h2><p>&emsp;&emsp;假若当前字符串 str1 的第 i 个字符正在与字符串 str2 的第 k 个字符进行匹配（i 和 k 均从 0 开始），若相等，则进行下一轮的匹配，即进行 str1 的 第 i+1 个字符与 str2 的第 k+1 个字符匹配；若不相等，则跟 str2 的第 next[k - 1] 字符进行匹配，直到 k = 0 为止。重复以上过程直到检测完 str1 的所有字符。</p>
+<p>&emsp;&emsp;根据上述匹配过程，完成 CPP 代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next = getNext(str2);           <span class="comment">// 获得 str2 的 next 数组</span></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;                                  <span class="comment">// 记录当前已匹配 str2 的索引</span></span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">-1</span>;                               <span class="comment">// 保存匹配的字符串起始位置，若不存在，返回-1</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)<span class="built_in">strlen</span>(str1); i++)  <span class="comment">// 第 i 轮匹配</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(k &gt; <span class="number">0</span> &amp;&amp; str1[i] != str2[k])      <span class="comment">// str1的第i个与str2的第k个字符进行比较，若不同，则k=next[k-1]，直到k为0或相等为止</span></span><br><span class="line">            k = next[k - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(str1[i] == str2[k])                  <span class="comment">// 若相等，更新k</span></span><br><span class="line">            k++;</span><br><span class="line">        <span class="keyword">if</span>(k == (<span class="keyword">int</span>)<span class="built_in">strlen</span>(str2))              <span class="comment">// 若找到完全匹配</span></span><br><span class="line">        &#123;</span><br><span class="line">            res = i - k + <span class="number">1</span>;                    <span class="comment">// 保存匹配的字符串起始位置，此时根据需要可用容器保存多个结果</span></span><br><span class="line">            k = next[k - <span class="number">1</span>];                    <span class="comment">// 进行下一轮匹配，此处根据需要可去掉</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;以上就是 KMP 算法的整个过程，完整的代码可访问 <a href="https://github.com/leitmily/Notes/tree/master/algorithm/KMP" title="KMP 算法详解（CPP 实现）" target="_blank" rel="noopener">Github</a> 下载。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/ECJTUACM-873284962/p/6751457.html" title="KMP算法学习(详解)" target="_blank" rel="noopener">KMP算法学习(详解)</a></li>
+<li><a href="https://blog.csdn.net/starstar1992/article/details/54913261/" title="KMP算法最浅显理解——一看就明白" target="_blank" rel="noopener">KMP算法最浅显理解 —— 一看就明白</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+<div>
+  
+    <div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文到此结束 <i class="fa fa-smile-o"></i> 感谢您的阅读-------------</div>
+
+</div>
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/reward/wechatpay.png" alt="leitmily 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/reward/alipay.jpg" alt="leitmily 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>leitmily</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://letmily.gitee.io/2018/08/04/kmp/" title="KMP 算法详解（CPP 实现）">https://letmily.gitee.io/2018/08/04/kmp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+            <a href="/tags/kmp/" rel="tag"># kmp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/28/googleaccount/" rel="next" title="【201807更新】解决注册谷歌账号时出现的错误：此电话号码无法用于进行验证">
+                <i class="fa fa-chevron-left"></i> 【201807更新】解决注册谷歌账号时出现的错误：此电话号码无法用于进行验证
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar/avatar.jpg"
+                alt="leitmily" />
+            
+              <p class="site-author-name" itemprop="name">leitmily</p>
+              <p class="site-description motion-element" itemprop="description">go go fighting!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/leitmily" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:494187160@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/kiss0tql" target="_blank" title="CSDN"><i class="fa fa-fw fa-repeat"></i>CSDN</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmp-算法思想"><span class="nav-number">2.</span> <span class="nav-text">kmp 算法思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next-数组计算"><span class="nav-number">3.</span> <span class="nav-text">next 数组计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串匹配"><span class="nav-number">4.</span> <span class="nav-text">字符串匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leitmily</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
