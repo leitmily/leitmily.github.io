@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Deemo的博客
 subtitle:
-description:
+description: go go fighting!
 author: leitmily
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://letmily.gitee.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -40,7 +40,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -78,6 +78,19 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@gitee.com:letmily/letmily.git
-  #repo: git@github.com:leitmily/leitmily.git
+  #repo: git@gitee.com:letmily/letmily.git
+  repo: git@github.com:leitmily/leitmily.github.io.git
   branch: master
+
+feed: # RSS订阅插件
+  type: atom
+  path: atom.xml
+  limit: 0
+
+#symbols_count_time: # 字数统计
+  #symbols: true
+  #time: true
+  #total_symbols: true
+  #total_time: true
+
+plugins: hexo-generate-feed

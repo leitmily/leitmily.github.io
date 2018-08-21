@@ -33,6 +33,7 @@
   <div class="{{ container_class }} {% block page_class %}{% endblock %}">
     <div class="headband"></div>
 
+
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner">{% include '_partials/header/index.swig' %}</div>
     </header>
@@ -119,3 +120,4 @@
   {% include '_third-party/copy-code.swig' %}
 </body>
 </html>
+<script type="text/javascript" src="/js/src/love.js"></script>
